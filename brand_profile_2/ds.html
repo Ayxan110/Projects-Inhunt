@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script>
+        var allImages = [['https://thumbs.dreamstime.com/b/signage-board-hilton-hotels-resorts-logo-modern-office-building-facade-editorial-d-rendering-outdoor-96603475.jpg', 'https://st3.depositphotos.com/1022914/14070/i/1600/depositphotos_140707744-stock-photo-street-signage-board-with-hilton.jpg', 'https://c8.alamy.com/comp/B7BN12/hilton-hotel-sign-washington-dc-usa-B7BN12.jpg', 'https://i.pinimg.com/736x/92/66/09/926609055f14904c6fd1659702021a9c.jpg', 'http://www.acpsigns.com/items/wp-content/uploads/2016/11/1479621518023-Hilton-Hotel-Room-Wall-Advertising-Display-Silkscreen-Aluminum-Plaques.jpg.jpg'], ['https://media-cdn.tripadvisor.com/media/photo-s/08/50/28/d3/doubletree-by-hilton.jpg', 'https://dcassetcdn.com/design_img/3715381/450827/22541161/d6zdtkkxzexcp92dtg5f5cv1vb_image.jpg', 'https://c8.alamy.com/comp/2C1BM86/three-executive-floor-room-cards-for-hilton-hotels-2C1BM86.jpg', 'https://images.examples.com/wp-content/uploads/2019/02/Hilton-Oak-Lawn-Catering-Manager-Business-Card.jpg', 'https://www.thebalance.com/thmb/HtuU3bEP1QF-M18BK7g_je8JnP4=/1500x1000/filters:fill(auto,1)/hilton-honors-american-express-business-card-7a901b9cd36c4e47a661f7bea61d4928.jpg']];
+
+        var items = ['Outdoor Sign Board', 'Business card', 'Letterhead', 'Envelope', 'Folder', 'Brochure', 'Web page', 'Social Media', 'Card door key', 'Paper key card holder', 'Door hangers', 'Employee uniform', 'Manager business suit', 'Housekeeping staff', 'Employee badge'];
+    </script>
+    <script>
+        $(document).ready(function(){
+            for(let i = 0; i < allImages.length; i++) {
+                $('body').append('<h3 style="text-align:center;">' + items[i] + '</h3>')
+                $('body').append('<div class="category flex row" style = "margin-bottom: 50px;  display: flex;justify-content: center;"></div>')
+                const $currCategory = $('body .category:eq(-1)');
+                $currCategory.append('<button type="button" class="btn prev btn-primary">Prev</button>')
+                for(let j = 0; j < allImages[i].length; j++) {
+                    $currCategory.append('<img src="' + allImages[i][j] + '" alt="item" style="margin:5px;width: 15vw; min-width: 150px;margin-left: auto;margin-right: auto;  border: 5px solid #555;">')
+                }
+                // $currCategory.find('.count').html(`1 / ${$currCategory.find('img').length}`)
+                $currCategory.append('<button type="button" class="btn next btn-primary">Next</button>')
+                $currCategory.find('img:eq(0)').addClass('active')
+                $currCategory.find('.next').click(function(){
+                    const $currImage = $currCategory.find('img.active')
+                    const $allCategoryImages = $currCategory.find('img')
+                    const currIndex = $allCategoryImages.index($currImage)
+                    $currCategory.find('img.active').removeClass('active')
+                    if (currIndex === $allCategoryImages.length - 1) {
+                        $allCategoryImages.eq(0).addClass('active')
+                    } else {
+                        $allCategoryImages.eq(currIndex + 1).addClass('active')
+                    }
+                    // $currCategory.find('count').html(`${$allCategoryImages.index($currCategory.find('img.active'))} / ${$allCategoryImages.length}`)
+                })
+                $currCategory.find('.prev').click(function(){
+                    const $currImage = $currCategory.find('img.active')
+                    const $allCategoryImages = $currCategory.find('img')
+                    const currIndex = $allCategoryImages.index($currImage)
+                    $currCategory.find('img.active').removeClass('active')
+                    if (currIndex === 0) {
+                        $allCategoryImages.eq(4).addClass('active')
+                    } else {
+                        $allCategoryImages.eq(currIndex - 1).addClass('active')
+                    }
+                    // $currCategory.find('count').html(`${$allCategoryImages.index($currCategory.find('img.active'))} / ${$allCategoryImages.length}`)
+                })
+            }
+        })
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <style>
+        img {
+            display: none;
+        }
+        img.active {
+            display: block;
+        }
+    </style>
+  </head>
+  <body>
+
+    
+  </body>
+</html>
